@@ -55,17 +55,8 @@ app.post('/api/user/:id',(req,res)=>{
 });
 
 app.get('/api/user/:id',(req,res)=>{
-    const schema = Joi.object({
-        name:Joi.string().trim().min(1).required(),
-        roles:Joi.array().min(1).required()
-    });
-    let validation = schema.validate(req.body);
-    if(validation.error){
-        res.status(400).send(validation.error.details[0].message);  
-        return;
-    }
 
-    
+
     function findUser(data){
         let userDetails = data.filter((element) => element.id === req.params.id);
         if(userDetails.length >0)
